@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float currentStamina = 100;
 
-    private float speed = 5;
+    public float speed = 5;
     private float startSpeed = 5;
     private float sprint = 8;
     // Start is called before the first frame update
@@ -40,7 +40,10 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             speed = startSpeed;
-            LoseStamina(-2);
+        }
+        if (!Input.GetKey(KeyCode.LeftShift))
+        {
+            GainStamina(2);
         }
     }
     private void LoseStamina(float LoseStamina)
@@ -48,5 +51,10 @@ public class PlayerMovement : MonoBehaviour
         currentStamina -= LoseStamina * Time.deltaTime;
         currentStamina = Mathf.Clamp(currentStamina, 0, 100);
         Staminabar.value = currentStamina;
+    }
+
+    private void GainStamina(float GainStamina)
+    {
+        LoseStamina(-GainStamina);
     }
 }

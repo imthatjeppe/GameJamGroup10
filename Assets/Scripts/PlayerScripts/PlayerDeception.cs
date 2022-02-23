@@ -7,10 +7,10 @@ public class PlayerDeception : MonoBehaviour
 {
     public Transform[] deceptions;
     public GameObject Player;
-    public GameObject Enemy;
 
     private EnemyFollowPlayer setDestination;
     private bool inRange;
+    private bool deceptioned;
 
     // Start is called before the first frame update
     void Start()
@@ -24,22 +24,18 @@ public class PlayerDeception : MonoBehaviour
         if (inRange && Input.GetKeyDown(KeyCode.E))
         {
             TurnOn();
+            Invoke(nameof(TurnOff), 5);
         }
     }
 
     private void TurnOn()
     {
         setDestination.target = deceptions[0];
-        ReachedDeception();
     }
 
-    void ReachedDeception()
+    private void TurnOff()
     {
-        if (Vector2.Distance(setDestination.transform.position, deceptions[0].position) < 2f)
-        {
-
-            transform.position = Vector2.MoveTowards(transform.position, Player.transform.position, setDestination.speed * Time.deltaTime);
-        }
+        setDestination.target = deceptions[1];
     }
 
 

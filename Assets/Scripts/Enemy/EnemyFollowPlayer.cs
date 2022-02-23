@@ -7,12 +7,15 @@ public class EnemyFollowPlayer : MonoBehaviour
 
     public float speed;
     public Transform target;
+    public GameObject Enemy;
 
+    private Transform playerPos;   
     private PlayerDeception deception;
    
     // Start is called before the first frame update
     void Start()
     {
+        target = playerPos;
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         
     }
