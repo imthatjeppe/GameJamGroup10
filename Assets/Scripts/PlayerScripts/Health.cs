@@ -25,8 +25,7 @@ public class Health : MonoBehaviour
 
         if (Vector2.Distance(Enemy.transform.position, Player.transform.position) < 0.2f)
         {
-            Invoke(nameof(SelectNewDestination), waitTime);
-            patrol = false;
+            playerHealth -= 1;
         }
     }
 
