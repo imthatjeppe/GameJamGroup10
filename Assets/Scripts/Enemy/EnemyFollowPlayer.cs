@@ -11,13 +11,16 @@ public class EnemyFollowPlayer : MonoBehaviour
 
     private Transform playerPos;   
     private PlayerDeception deception;
-   
+    private PlayerMovement Hiding;
+
     // Start is called before the first frame update
     void Start()
     {
         target = playerPos;
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        
+        Hiding = FindObjectOfType<PlayerMovement>();
+        deception = FindObjectOfType<PlayerDeception>();
+
     }
 
     // Update is called once per frame
@@ -30,6 +33,22 @@ public class EnemyFollowPlayer : MonoBehaviour
     public void FollowPlayer()
     {
         transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+    }
+
+    public void StopFollowPlayer()
+    {
+        if (Hiding.isHidden)
+        {
+            target = deception.deceptions[2];
+        }
+    }
+
+    public void ReturnToFollowPlayer()
+    {
+        if (!Hiding.isHidden)
+        {
+            target = deception.deceptions[1];
+        }
     }
 }
     

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Deception
   - Enemy
+  - Bush
   layers:
   - Default
   - TransparentFX

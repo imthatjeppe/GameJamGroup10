@@ -15,6 +15,7 @@ public class PlayerDeception : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         setDestination = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyFollowPlayer>();
     }
 
@@ -24,7 +25,7 @@ public class PlayerDeception : MonoBehaviour
         if (inRange && Input.GetKeyDown(KeyCode.E))
         {
             TurnOn();
-            Invoke(nameof(TurnOff), 5);
+            Invoke(nameof(TurnOff), 8);
         }
     }
 

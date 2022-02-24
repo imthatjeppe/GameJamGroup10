@@ -7,15 +7,20 @@ public class PlayerMovement : MonoBehaviour
 {
     public Slider Staminabar;
 
-    private float currentStamina = 100;
-
+    public bool isHidden;
     public float speed = 5;
+
     private float startSpeed = 5;
     private float sprint = 8;
+    private float currentStamina = 100;
+
+    private EnemyFollowPlayer randomMoveSpots;
+
     // Start is called before the first frame update
     void Start()
     {
         currentStamina = 100;
+        randomMoveSpots = FindObjectOfType<EnemyFollowPlayer>();
     }
 
     // Update is called once per frame
@@ -56,5 +61,24 @@ public class PlayerMovement : MonoBehaviour
     private void GainStamina(float GainStamina)
     {
         LoseStamina(-GainStamina);
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Bush"))
+        {
+            isHidden = true;
+            randomMoveSpots.StopFollowPlayer();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Bush"))
+        {
+            isHidden = false;
+            randomMoveSpots.ReturnToFollowPlayer();
+        }
     }
 }
