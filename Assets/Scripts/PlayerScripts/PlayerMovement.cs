@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void movement()
     {
-       
+      
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
         Vector3 movement = new Vector3(x, y).normalized * Time.deltaTime * speed;
