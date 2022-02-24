@@ -3,18 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PickUp : MonoBehaviour
 {
-
-    private float pickup = 0;
+    public float timer = 30;
+    public float pickup = 0;
     public TextMeshProUGUI textpickup;
+    public Text timerForHelp;
     private EnemyFollowPlayer enemySpeed;
     private Appear policeWillCome;
     private void Start()
     {
         enemySpeed = FindObjectOfType<EnemyFollowPlayer>();
         policeWillCome = FindObjectOfType<Appear>();
+    }
+
+    private void Update()
+    {
+        if(pickup == 5)
+        {
+            timer -= 1 * Time.deltaTime;
+        }
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -33,15 +43,16 @@ public class PickUp : MonoBehaviour
 
         if (pickup == 5)
         {
-            Invoke(nameof(loadVictory), 30);
+            Invoke(nameof(loadVictory), timer);
             enemySpeed.speed = 3;
-            policeWillCome.policeWillAppear();
+            timerForHelp.text = timer.ToString() + "seconds until help arrives";
+            
         }
     }
 
     private void loadVictory()
     {
-        SceneManager.LoadScene(sceneBuildIndex: 2);
+        SceneManager.LoadScene(sceneBuildIndex: 3);
         Debug.Log("next scene loads");
     }
     
