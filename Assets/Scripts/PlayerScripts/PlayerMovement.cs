@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PlayerMovement : MonoBehaviour
 {
     public Slider Staminabar;
+    public Animator animator;
 
     public bool isHidden;
     public float speed = 5;

@@ -8,6 +8,7 @@ public class EnemyFollowPlayer : MonoBehaviour
     public float speed;
     public Transform target;
     public GameObject Enemy;
+    public Animator animator;
 
     private Transform playerPos;   
     private PlayerDeception deception;
@@ -20,16 +21,12 @@ public class EnemyFollowPlayer : MonoBehaviour
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         Hiding = FindObjectOfType<PlayerMovement>();
         deception = FindObjectOfType<PlayerDeception>();
-
     }
-
     // Update is called once per frame
     void Update()
     {
         FollowPlayer();
     }
-
-
     public void FollowPlayer()
     {
         transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
